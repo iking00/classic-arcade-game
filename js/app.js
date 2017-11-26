@@ -1,10 +1,10 @@
-// Enemies our player must avoid
+/**
+* @description Represents an Enemy
+* @constructor
+* @param {initeger} row - the row position for enemy
+* @param {integer} moveSpeed - the amount to increment x coordinate for enemy movement
+*/
 var Enemy = function(row, moveSpeed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = -101;
     this.y = row * 83 - 23;
@@ -15,9 +15,6 @@ var Enemy = function(row, moveSpeed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
     const x = this.x + this.moveSpeed * dt;
     x < 606 ? this.x = x : this.x = -101;
 };
