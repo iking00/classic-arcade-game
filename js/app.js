@@ -29,8 +29,8 @@ Enemy.prototype.render = function() {
 class Player {
     constructor(){
         this.sprite = 'images/char-boy.png'
-        this.x = 0;
-        this.y = 0;
+        this.x = 2 * 101;
+        this.y = 5 * 83 - 23;
     }
 
     update(){
