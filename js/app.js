@@ -59,7 +59,8 @@ class Player {
                 if(this.col > 0) {this.col -= 1};
                 break;
             case 'up':
-                if(this.row > 1) {this.row -= 1};
+                //if the player makes it to the top then reset position to begining
+                this.row > 1 ? this.row -= 1 : this.reset();
                 break;
             case 'right':
                 if(this.col < 4) {this.col += 1};
@@ -69,6 +70,11 @@ class Player {
                 break;
             default:
         }
+    }
+
+    reset(){
+        this.row = 5;
+        this.col = 2;
     }
 }
 
