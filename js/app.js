@@ -1,21 +1,26 @@
 /**
 * @description Represents an Enemy
 * @constructor
-* @param {initeger} row - the row position for enemy
+* @param {number} row - the row position for enemy
 * @param {integer} moveSpeed - the amount to increment x coordinate for enemy movement
 */
 var Enemy = function(row, moveSpeed) {
     this.sprite = 'images/enemy-bug.png';
+    //enemy should be drawn off screen initially
     this.x = -101;
+    //set y coordinate to draw and offset to properly position image
     this.y = row * 83 - 23;
     this.moveSpeed = moveSpeed;
 
 };
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+/**
+* @description Update the x coordinate to draw enemy image
+* @param dt {number} dt - time delta to make movement consistent
+*/
 Enemy.prototype.update = function(dt) {
     const x = this.x + this.moveSpeed * dt;
+    //if movement pushes the enemy outside canvas then reset it
     x < 606 ? this.x = x : this.x = -101;
 };
 
