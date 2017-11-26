@@ -56,17 +56,17 @@ class Player {
         //based on key pressed; increment or decrement column/row; do nothing if move is outside canvas
         switch(keyCode){
             case 'left':
-                if(this.col > 0) {this.col -= 1};
+                if(this.col > 0) {this.col -= 1;}
                 break;
             case 'up':
                 //if the player makes it to the top then reset position to begining
                 this.row > 1 ? this.row -= 1 : this.reset();
                 break;
             case 'right':
-                if(this.col < 4) {this.col += 1};
+                if(this.col < 4) {this.col += 1;}
                 break;
             case 'down':
-                if(this.row < 5) {this.row += 1};
+                if(this.row < 5) {this.row += 1;}
                 break;
             default:
         }
