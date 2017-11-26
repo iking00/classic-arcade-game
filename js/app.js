@@ -35,21 +35,40 @@ Enemy.prototype.render = function() {
 */
 class Player {
     constructor(){
-        this.sprite = 'images/char-boy.png'
-        this.x = 2 * 101;
-        this.y = 5 * 83 - 23;
+        this.sprite = 'images/char-boy.png';
+        this.row = 5;
+        this.col = 2;
+        this.x = 0;
+        this.y = 0;
+        this.yOffset = 23;
     }
 
     update(){
-
+        this.x = this.col * 101;
+        this.y = this.row * 83 - this.yOffset;
     }
 
     render(){
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
-    handleInput(){
-
+    handleInput(keyCode){
+        //based on key pressed; increment or decrement column/row; do nothing if move is outside canvas
+        switch(keyCode){
+            case 'left':
+                if(this.col > 0) {this.col -= 1};
+                break;
+            case 'up':
+                if(this.row > 1) {this.row -= 1};
+                break;
+            case 'right':
+                if(this.col < 4) {this.col += 1};
+                break;
+            case 'down':
+                if(this.row < 5) {this.row += 1};
+                break;
+            default:
+        }
     }
 }
 
