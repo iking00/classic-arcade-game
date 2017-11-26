@@ -22,6 +22,15 @@ Enemy.prototype.update = function(dt) {
     const x = this.x + this.moveSpeed * dt;
     //if movement pushes the enemy outside canvas then reset it
     x < 606 ? this.x = x : this.x = -101;
+    //identify enemy and player collision
+    //offset position for size of player and movement
+    const playerLeft = player.x + 30;
+    const playerRight = playerLeft + 101 - 50;
+    //get position of enemy
+    const enemyLeft = this.x;
+    const enemyRight = enemyLeft + 101;
+    //if enemy and player are on the same y position and the enemy is intersecting the player
+    if(enemyRight >= playerLeft && enemyLeft <= playerRight && this.y === player.y) {player.reset();}
 };
 
 // Draw the enemy on the screen, required method for game
