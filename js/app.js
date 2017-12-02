@@ -108,3 +108,17 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+/**
+* @description On character selection update the character image and render on screen
+*/
+function characterSelected(){
+    player.sprite = 'images/' + $(this).val();
+    player.render();
+    //stop arrow keys from changing the radio selection
+    $(this).blur();
+}
+
+$(function(){
+    $('.char-sel').click(characterSelected);
+});
