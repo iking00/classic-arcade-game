@@ -1,64 +1,67 @@
 /**
+* @description Represents an Entity in game
+* @constructor
+* @param {string} sprite - the image to be drawn for this entity
+* @param {number} x - the x coordinate where the sprite is to be drawn
+* @param {number} y - the y coordiante where the sprite is to be drawn
+* @param {number} yOffset - amount to offset y coordinate so that entity is positioned properly
+*/
+class Entity {
+    constructor(sprite, x, y, yOffset) {
+        this.sprite = sprite;
+        this.x = x;
+        this.y = y;
+        this.yOffset = yOffset;
+    }
+
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
+
+/**
 * @description Represents an Enemy
 * @constructor
 * @param {number} row - the row position for enemy
 * @param {integer} moveSpeed - the amount to increment x coordinate for enemy movement
 */
-var Enemy = function(row, moveSpeed) {
-    this.sprite = 'images/enemy-bug.png';
-    //enemy should be drawn off screen initially
-    this.x = -101;
-    //set y coordinate to draw and offset to properly position image
-    this.y = row * 83 - 23;
-    this.moveSpeed = moveSpeed;
+class Enemy extends Character {
+    constructor(row, moveSpeed, x = -101, yOffset = 23, sprite = 'images/enemy-bug.png'){
+        const y = row * 83 - yOffset;
+        super(sprite, x, y, yOffset);
+        this.moveSpeed = moveSpeed;
+    }
 
-};
-
-/**
-* @description Update the x coordinate to draw enemy image
-* @param dt {number} dt - time delta to make movement consistent
-*/
-Enemy.prototype.update = function(dt) {
-    const x = this.x + this.moveSpeed * dt;
-    //if movement pushes the enemy outside canvas then reset it
-    x < 606 ? this.x = x : this.x = -101;
-    //identify enemy and player collision
-    //offset position for size of player and movement
-    const playerLeft = player.x + 30;
-    const playerRight = playerLeft + 101 - 50;
-    //get position of enemy
-    const enemyLeft = this.x;
-    const enemyRight = enemyLeft + 101;
-    //if enemy and player are on the same y position and the enemy is intersecting the player
-    if(enemyRight >= playerLeft && enemyLeft <= playerRight && this.y === player.y) {player.reset();}
-};
-
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+    update(dt){
+        const x = this.x + this.moveSpeed * dt;
+        //if movement pushes the enemy outside canvas then reset it
+        x < 606 ? this.x = x : this.x = -101;
+        //identify enemy and player collision
+        //offset position for size of player and movement
+        const playerLeft = player.x + 30;
+        const playerRight = playerLeft + 101 - 50;
+        //get position of enemy
+        const enemyLeft = this.x;
+        const enemyRight = enemyLeft + 101;
+        //if enemy and player are on the same y position and the enemy is intersecting the player
+        if(enemyRight >= playerLeft && enemyLeft <= playerRight && this.y === player.y) {player.reset();}
+    }
+}
 
 /**
 * @description Represents a Player
 * @constructor
 */
-class Player {
-    constructor(){
-        this.sprite = 'images/char-boy.png';
-        this.row = 5;
-        this.col = 2;
-        this.x = 0;
-        this.y = 0;
-        this.yOffset = 23;
+class Player extends Character {
+    constructor(row = 5, col = 2, yOffset = 23, sprite = 'images/char-boy.png', x = 0, y = 0){
+        super(sprite, x, y, yOffset);
+        this.row = row;
+        this.col = col;
     }
 
     update(){
         this.x = this.col * 101;
         this.y = this.row * 83 - this.yOffset;
-    }
-
-    render(){
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
     handleInput(keyCode){
@@ -112,7 +115,7 @@ document.addEventListener('keyup', function(e) {
 /**
 * @description On character selection update the character image and render on screen
 */
-function characterSelected(){
+function playerSelected(){
     player.sprite = 'images/' + $(this).val();
     player.render();
     //stop arrow keys from changing the radio selection
@@ -120,5 +123,5 @@ function characterSelected(){
 }
 
 $(function(){
-    $('.char-sel').click(characterSelected);
+    $('.char-sel').click(playerSelected);
 });
