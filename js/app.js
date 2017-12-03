@@ -114,8 +114,11 @@ class Star extends Entity {
     update(){
         const playerCol = player.col;
         const playerRow = player.row;
-        if(playerCol === this.col && playerRow === this.row){
+        //if player collides with star hide it and increment count; make sure it has not already been hidden
+        if(playerCol === this.col && playerRow === this.row && this.x !== -101){
             this.x = -101;
+            starCount.increment();
+            starCount.display();
         }
     }    
 }
@@ -153,6 +156,25 @@ const collisionCount = function(){
         reset: function(){
             count = 0;
             $('#collisonCount').val(0);
+        }
+    }
+}();
+
+/**
+* @description: closure to track and display the number of times player collides with star
+*/
+const starCount = function(){
+    let count = 0;
+    return {
+        increment: function(){
+            count += 1;
+        },
+        display: function(){
+            $('#starCount').html(count);
+        },
+        reset: function(){
+            count = 0;
+            $('#starCount').val(0);
         }
     }
 }();
