@@ -16,14 +16,14 @@ body {
 }
 
 .game-stats {
-	text-align: right;
+	text-align: left;
 }
 
 .game-stats p {
 	margin: 5px;
 }
 
-.game-stats h2 {
+.game-info h2 {
 	font-size: 1.25em;
 	margin-bottom: 5px;
 }
