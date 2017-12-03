@@ -44,7 +44,7 @@ class Enemy extends Entity {
         const enemyLeft = this.x;
         const enemyRight = enemyLeft + 101;
         //if enemy and player are on the same y position and the enemy is intersecting the player
-        if(enemyRight >= playerLeft && enemyLeft <= playerRight && this.y === player.y) {player.reset();}
+        if(enemyRight >= playerLeft && enemyLeft <= playerRight && this.y === player.y) {player.collision();}
     }
 }
 
@@ -90,6 +90,12 @@ class Player extends Entity {
         winCount.display();
     }
 
+    collision(){
+        this.reset();
+        collisionCount.increment();
+        collisionCount.display();
+    }
+
     reset(){
         this.row = 5;
         this.col = 2;
@@ -111,6 +117,25 @@ const winCount = function(){
         reset: function(){
             count = 0;
             $('#winCount').val(0);
+        }
+    }
+}();
+
+/**
+* @description: closure to track and display the number of times player collides with enemy
+*/
+const collisionCount = function(){
+    let count = 0;
+    return {
+        increment: function(){
+            count += 1;
+        },
+        display: function(){
+            $('#collisionCount').html(count);
+        },
+        reset: function(){
+            count = 0;
+            $('#collisonCount').val(0);
         }
     }
 }();
