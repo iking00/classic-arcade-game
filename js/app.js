@@ -71,8 +71,8 @@ class Player extends Entity {
                 if(this.col > 0) {this.col -= 1;}
                 break;
             case 'up':
-                //if the player makes it to the top then reset position to begining
-                this.row > 1 ? this.row -= 1 : this.reset();
+                //if the player makes it to the top then reset and add win
+                this.row > 1 ? this.row -= 1 : this.won();
                 break;
             case 'right':
                 if(this.col < 4) {this.col += 1;}
@@ -84,11 +84,36 @@ class Player extends Entity {
         }
     }
 
+    won(){
+        this.reset();
+        winCount.increment();
+        winCount.display();
+    }
+
     reset(){
         this.row = 5;
         this.col = 2;
     }
 }
+
+/**
+* @description: closure to track and display the number of times player wins
+*/
+const winCount = function(){
+    let count = 0;
+    return {
+        increment: function(){
+            count += 1;
+        },
+        display: function(){
+            $('#winCount').html(count);
+        },
+        reset: function(){
+            count = 0;
+            $('#winCount').val(0);
+        }
+    }
+}();
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
