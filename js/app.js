@@ -96,9 +96,7 @@ class Player extends Entity {
 let allEnemies = [];
 const enemies = [
     [1, 50],
-    [1, 150],
     [1, 200],
-    [2, 100],
     [2, 300],
     [2, 500],
     [3, 300],
