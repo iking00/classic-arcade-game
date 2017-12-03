@@ -25,7 +25,7 @@ class Entity {
 * @param {number} row - the row position for enemy
 * @param {integer} moveSpeed - the amount to increment x coordinate for enemy movement
 */
-class Enemy extends Character {
+class Enemy extends Entity {
     constructor(row, moveSpeed, x = -101, yOffset = 23, sprite = 'images/enemy-bug.png'){
         const y = row * 83 - yOffset;
         super(sprite, x, y, yOffset);
@@ -52,7 +52,7 @@ class Enemy extends Character {
 * @description Represents a Player
 * @constructor
 */
-class Player extends Character {
+class Player extends Entity {
     constructor(row = 5, col = 2, yOffset = 23, sprite = 'images/char-boy.png', x = 0, y = 0){
         super(sprite, x, y, yOffset);
         this.row = row;
@@ -93,9 +93,21 @@ class Player extends Character {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const enemyI = new Enemy(1, 50);
-const enemyII = new Enemy(3, 70);
-const allEnemies = [enemyI, enemyII];
+let allEnemies = [];
+const enemies = [
+    [1, 50],
+    [1, 150],
+    [1, 200],
+    [2, 100],
+    [2, 300],
+    [2, 500],
+    [3, 300],
+    [3, 255]
+];
+for (const enemy of enemies) {
+    allEnemies.push(new Enemy(enemy[0],enemy[1]));
+}
+console.log(allEnemies);
 const player = new Player();
 
 
