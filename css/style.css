@@ -1,3 +1,29 @@
 body {
     text-align: center;
 }
+
+.game-header {
+	border: 1px solid #941907;
+	border-radius: 10px;
+	width: 505px;
+	margin: auto;
+	margin-bottom: 10px;
+}
+
+.game-info {
+	width: 200px;
+	display: inline-block;
+}
+
+.game-stats {
+	text-align: right;
+}
+
+.game-stats p {
+	margin: 5px;
+}
+
+.game-stats h2 {
+	font-size: 1.25em;
+	margin-bottom: 5px;
+}

@@ -2,16 +2,27 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Effective JavaScript: Frogger</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-	<form action="">
-		<input type="radio" name="character" class="char-sel" value="char-boy.png" checked>Boy
-		<input type="radio" name="character" class="char-sel" value="char-pink-girl.png">Girl
-		<input type="radio" name="character" class="char-sel" value="char-cat-girl.png">Cat Girl
-	</form>
+    <section class="game-header">
+        <div class="game-info">
+            Change Character:<br>
+        	<input type="radio" name="character" class="char-sel" value="char-boy.png" checked>Boy
+        	<input type="radio" name="character" class="char-sel" value="char-pink-girl.png">Girl
+        	<input type="radio" name="character" class="char-sel" value="char-cat-girl.png">Cat Girl
+        </div>
+        <div class="game-info game-stats">
+            <h2>Game Stats</h2>
+            <p>Wins: <span id="winCount">0</span></p>
+            <p>Collisions: <span id="collisionCount">0</span></p>
+            <p>Gems Collected: <span class="gemCount">0</span></p>
+            <p></p>
+        </div>
+    </section>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
