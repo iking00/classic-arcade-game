@@ -44,7 +44,10 @@ class Enemy extends Entity {
         const enemyLeft = this.x;
         const enemyRight = enemyLeft + 101;
         //if enemy and player are on the same y position and the enemy is intersecting the player
-        if(enemyRight >= playerLeft && enemyLeft <= playerRight && this.y === player.y) {player.collision();}
+        if(enemyRight >= playerLeft && enemyLeft <= playerRight && this.y === player.y) {
+            player.collision(); 
+            resetStars();
+        }
     }
 }
 
@@ -88,6 +91,7 @@ class Player extends Entity {
         this.reset();
         winCount.increment();
         winCount.display();
+        resetStars();
     }
 
     collision(){
@@ -120,8 +124,25 @@ class Star extends Entity {
             starCount.increment();
             starCount.display();
         }
-    }    
+    }
+
+    reset(){
+        const x = this.col * 101;
+        const y = this.row * 83 - this.yOffset;
+        this.x = x;
+        this.y = y;
+    }
 }
+
+/**
+* @description: reset diplay of stars so those drawn off canas are shown again
+*/
+function resetStars() {
+    for (const star of allStars){
+        star.reset();
+    }   
+}
+
 /**
 * @description: closure to track and display the number of times player wins
 */
