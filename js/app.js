@@ -102,6 +102,23 @@ class Player extends Entity {
     }
 }
 
+class Star extends Entity {
+    constructor(row, col, sprite = 'images/star.png', yOffset = 10){
+        const x = col * 101;
+        const y = row * 83 - yOffset;
+        super(sprite, x, y, yOffset);
+        this.row = row;
+        this.col = col;
+    }
+
+    update(){
+        const playerCol = player.col;
+        const playerRow = player.row;
+        if(playerCol === this.col && playerRow === this.row){
+            this.x = -101;
+        }
+    }    
+}
 /**
 * @description: closure to track and display the number of times player wins
 */
@@ -155,10 +172,16 @@ const enemies = [
 for (const enemy of enemies) {
     allEnemies.push(new Enemy(enemy[0],enemy[1]));
 }
-console.log(allEnemies);
 const player = new Player();
 
-
+let allStars = [];
+const stars = [
+    [1,2],
+    [3,4]
+];
+for (const star of stars){
+    allStars.push(new Star(star[0],star[1]));
+}
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {

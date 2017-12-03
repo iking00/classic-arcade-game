@@ -93,6 +93,9 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
+        allStars.forEach(function(star) {
+            star.update();
+        });
         player.update();
     }
 
@@ -152,7 +155,9 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-
+        allStars.forEach(function(star) {
+            star.render();
+        });
         player.render();
     }
 
@@ -175,7 +180,8 @@ var Engine = (function(global) {
         'images/enemy-bug.png',
         'images/char-boy.png',
         'images/char-pink-girl.png',
-        'images/char-cat-girl.png'
+        'images/char-cat-girl.png',
+        'images/star.png'
     ]);
     Resources.onReady(init);
 
