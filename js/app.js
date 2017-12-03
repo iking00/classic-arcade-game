@@ -157,7 +157,7 @@ const winCount = function(){
         },
         reset: function(){
             count = 0;
-            $('#winCount').val(0);
+            $('#winCount').html(0);
         }
     }
 }();
@@ -176,7 +176,7 @@ const collisionCount = function(){
         },
         reset: function(){
             count = 0;
-            $('#collisonCount').val(0);
+            $('#collisionCount').html(0);
         }
     }
 }();
@@ -195,10 +195,21 @@ const starCount = function(){
         },
         reset: function(){
             count = 0;
-            $('#starCount').val(0);
+            $('#starCount').html(0);
         }
     }
 }();
+
+/**
+* @description: start new game; move player to starting position; redisplay hidden stars;reset counters
+*/
+function resetGame(){
+    player.reset();
+    resetStars();
+    winCount.reset();
+    collisionCount.reset();
+    starCount.reset();
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
