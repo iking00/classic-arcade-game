@@ -205,11 +205,11 @@ const starCount = function(){
 // Place the player object in a variable called player
 let allEnemies = [];
 const enemies = [
-    [1, 50],
-    [1, 200],
+    [1, 80],
+    [1, 400],
     [2, 300],
-    [2, 500],
-    [3, 300],
+    [2, 175],
+    [3, 100],
     [3, 255]
 ];
 for (const enemy of enemies) {
@@ -220,6 +220,7 @@ const player = new Player();
 let allStars = [];
 const stars = [
     [1,2],
+    [2,0],
     [3,4]
 ];
 for (const star of stars){
