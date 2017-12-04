@@ -41,7 +41,7 @@ class Enemy extends Entity {
     update(dt){
         const x = this.x + this.moveSpeed * dt;
         //if movement pushes the enemy outside canvas then reset it
-        x < 606 ? this.x = x : this.x = -101;
+        this.x = x < 606 ? x : -101;
         //identify enemy and player collision
         //offset position for size of player and movement
         const playerLeft = player.x + 30;
