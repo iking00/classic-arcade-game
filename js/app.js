@@ -43,6 +43,11 @@ class Enemy extends Entity {
         //if movement pushes the enemy outside canvas then reset it
         this.x = x < 606 ? x : -101;
         //identify enemy and player collision
+        this.checkCollision();
+    }
+
+    //determine if enemy collides with player
+    checkCollision(){
         //offset position for size of player and movement
         const playerLeft = player.x + 30;
         const playerRight = playerLeft + 101 - 50;
@@ -53,7 +58,7 @@ class Enemy extends Entity {
         if(enemyRight >= playerLeft && enemyLeft <= playerRight && this.y === player.y) {
             player.collision(); 
             resetStars();
-        }
+        }        
     }
 }
 
