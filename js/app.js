@@ -77,6 +77,9 @@ class Player extends Entity {
         super(sprite, x, y, yOffset);
         this.row = row;
         this.col = col;
+        this.winCount = 0;
+        this.collisionCount = 0;
+        this.starCount = 0;
         this.translateRowCol();
     }
 
@@ -116,16 +119,16 @@ class Player extends Entity {
     //player made it to top; reset player and star display position; add win count
     won(){
         this.reset();
-        winCount.increment();
-        winCount.display();
+        this.winCount +=1;
+        $('#winCount').html(this.winCount);
         resetStars();
     }
 
     //player collided with enemy; reset player position; increment collision count
     collision(){
         this.reset();
-        collisionCount.increment();
-        collisionCount.display();
+        this.collisionCount += 1
+        $('#collisionCount').html(this.collisionCount);
     }
 
     //reset player to starting column/row which will later set x/y position in update method
@@ -133,6 +136,16 @@ class Player extends Entity {
         this.row = 5;
         this.col = 2;
         this.translateRowCol();
+    }
+
+    //reset all counts to 0 and update html
+    resetCounts(){
+        this.winCount = 0;
+        $('#winCount').html(0);
+        this.collisionCount = 0;
+        $('#collisionCount').html(0);
+        this.starCount = 0;
+        $('#starCount').html(0);
     }
 }
 
@@ -163,8 +176,8 @@ class Star extends Entity {
         //if player collides with star hide it and increment count; make sure it has not already been hidden
         if(playerCol === this.col && playerRow === this.row && this.x !== -101){
             this.x = -101;
-            starCount.increment();
-            starCount.display();
+            player.starCount += 1;
+            $('#starCount').html(player.starCount);
         }
     }
 
@@ -187,71 +200,12 @@ function resetStars() {
 }
 
 /**
-* @description: closure to track and display the number of times player wins
-*/
-const winCount = function(){
-    let count = 0;
-    return {
-        increment: function(){
-            count += 1;
-        },
-        display: function(){
-            $('#winCount').html(count);
-        },
-        reset: function(){
-            count = 0;
-            $('#winCount').html(0);
-        }
-    }
-}();
-
-/**
-* @description: closure to track and display the number of times player collides with enemy
-*/
-const collisionCount = function(){
-    let count = 0;
-    return {
-        increment: function(){
-            count += 1;
-        },
-        display: function(){
-            $('#collisionCount').html(count);
-        },
-        reset: function(){
-            count = 0;
-            $('#collisionCount').html(0);
-        }
-    }
-}();
-
-/**
-* @description: closure to track and display the number of times player collides with star
-*/
-const starCount = function(){
-    let count = 0;
-    return {
-        increment: function(){
-            count += 1;
-        },
-        display: function(){
-            $('#starCount').html(count);
-        },
-        reset: function(){
-            count = 0;
-            $('#starCount').html(0);
-        }
-    }
-}();
-
-/**
 * @description: start new game; move player to starting position; redisplay hidden stars;reset counters
 */
 function resetGame(){
     player.reset();
+    player.resetCounts();
     resetStars();
-    winCount.reset();
-    collisionCount.reset();
-    starCount.reset();
 }
 
 // store all enemy objects in allEnemies array
