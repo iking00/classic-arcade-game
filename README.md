@@ -16,6 +16,7 @@ This game was developed to complete a project for the Udacity Front-End Web Deve
 5. There are stars on the board, to increase the challenge try collecting them as you avoid the enemies and reach the water.
 6. The game will count the number of times you reach the water, collide with an enemy and collect a star.
 7. If you'd like to reset the counts and game board click the Restart Game button.
+8. You can change the player at any time during the game by selecting from the options at the top.
 
 ## Dependencies
 
