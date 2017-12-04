@@ -7,6 +7,16 @@ A classic arcade game where player tries to cross the road while avoiding enemie
 
 This game was developed to complete a project for the Udacity Front-End Web Developer Nanodegree.
 
+## Game Play
+
+1. Open index.html in a browser.
+2. Your goal is to guide the player across the blocks and reach the water.
+3. Be Careful! Don't collide with any of the enemy bugs moving across your screen or you'll have to start over.
+4. To move your character use the up/down/left/right arrow keys.
+5. There are stars on the board, to increase the challenge try collecting them as you avoid the enemies and reach the water.
+6. The game will count the number of times you reach the water, collide with an enemy and collect a star.
+7. If you'd like to reset the counts and game board click the Restart Game button.
+
 ## Dependencies
 
 - jQuery
