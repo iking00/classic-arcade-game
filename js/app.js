@@ -77,13 +77,19 @@ class Player extends Entity {
         super(sprite, x, y, yOffset);
         this.row = row;
         this.col = col;
+        this.translateRowCol();
     }
 
     update(){
+
+    }
+
+    //set the x y coordinate based on row/col
+    translateRowCol(){
         //based on column parameter set x position multiplied by width of blocks
         this.x = this.col * 101;
         //based on row parameter set y position multilied by height of blocks then offset to properly position entity
-        this.y = this.row * 83 - this.yOffset;
+        this.y = this.row * 83 - this.yOffset;        
     }
 
     //based on key pressed; increment or decrement column/row which will later set x/y position in update method; do nothing if move is outside canvas
@@ -104,6 +110,7 @@ class Player extends Entity {
                 break;
             default:
         }
+        this.translateRowCol();
     }
 
     //player made it to top; reset player and star display position; add win count
@@ -125,6 +132,7 @@ class Player extends Entity {
     reset(){
         this.row = 5;
         this.col = 2;
+        this.translateRowCol();
     }
 }
 
