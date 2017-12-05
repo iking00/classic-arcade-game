@@ -153,6 +153,13 @@ class Player extends Entity {
     }
 }
 
+/**
+* @description Return a random column between 0 & 4
+*/
+function randomColumn() {
+    const col = Math.floor(Math.random() * 5);
+    return col;  
+}
 
 /**
 * @description Represents a Star
@@ -163,8 +170,9 @@ class Player extends Entity {
 * @param {integer} yOffset - the amount to offset y coordinate to ensure proper position
 */
 class Star extends Entity {
-    constructor(row, col, sprite = 'images/star.png', yOffset = 10){
+    constructor(row, sprite = 'images/star.png', yOffset = 10){
         //based on column parameter set x position multiplied by width of blocks
+        const col = randomColumn();
         const x = col * 101;
         //based on row parameter set y position multilied by height of blocks then offset to properly position entity
         const y = row * 83 - yOffset;
@@ -187,7 +195,9 @@ class Star extends Entity {
 
     //redisplay the star on screen
     reset(){
-        const x = this.col * 101;
+        const col = randomColumn();
+        this.col = col;
+        const x = col * 101;
         const y = this.row * 83 - this.yOffset;
         this.x = x;
         this.y = y;
@@ -232,15 +242,9 @@ const player = new Player();
 
 // store all star objects in allStars array
 let allStars = [];
-// array of arrays to store initial configuration of stars [0] is the row position [1] is the column position
-// update this array to change row position and move speed of enemies
-const stars = [
-    [1,2],
-    [2,0],
-    [3,4]
-];
-for (const star of stars){
-    allStars.push(new Star(star[0],star[1]));
+//create three stars; one for each row
+for (let i = 1; i < 4; i ++) {
+    allStars.push(new Star(i));
 }
 
 // This listens for key presses and sends the keys to your
