@@ -56,8 +56,7 @@ class Enemy extends Entity {
         const enemyRight = enemyLeft + 101;
         //if enemy and player are on the same y position and the enemy is intersecting the player then start over
         if(enemyRight >= playerLeft && enemyLeft <= playerRight && this.y === player.y) {
-            player.collision(); 
-            resetStars();
+            player.collision();
         }        
     }
 }
