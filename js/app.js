@@ -257,7 +257,6 @@ document.addEventListener('keyup', function(e) {
 */
 function playerSelected(){
     player.sprite = 'images/' + $(this).val();
-    player.render();
     //stop arrow keys from changing the radio selection
     $(this).blur();
 }
