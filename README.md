@@ -56,9 +56,9 @@ This game was developed to complete a project for the Udacity Front-End Web Deve
 - Enemies cross the screen at varying speeds.
 - The player can be moved in any direction but will not be allowed to move off screen.
 - As the player moves across the board:
-   If the player collides with an enemy the counter for collisions will be incremented and player will be moved back to starting position and any hidden stars will be shown.
+   If the player collides with an enemy the counter for collisions will be incremented and player will be moved back to starting position.
    If the player collides with a star the counter for stars will be incremented and the star will be hidden.
-   If the player reaches the top the counter for wins will be incremented, the player will be moved back to starting position and any hidden stars will be shown.
+   If the player reaches the top the counter for wins will be incremented, the player will be moved back to starting position and any hidden stars will be randomly shown again.
 
 ### Game Stats
 - The game employs counters to track wins, collisions and stars collected.
@@ -80,13 +80,6 @@ This game was developed to complete a project for the Udacity Front-End Web Deve
 	];
 ```
 - The enemy class has an update method that handles their movement and handles collisions with player.
-- Star entities are placed on the screen and their position can be changed in app.js. Array position 0 identifies the row and position 1 identifies the column positions that will later be translated to x/y coordinates to start drawing on canvas.
-```Javascript
-	const stars = [
-	    [1,2],
-	    [2,0],
-	    [3,4]
-	];
-```
+- 3 star entities are placed on the board (one for each row). Their column position is selected randomly from 0 to 4 when they are initially drawn or reset.
 - The star class has an update method that handles updates when player collides with it and a reset method that places it back on the board when necessary.
 - The player class has methods to handle movement of the player entity and handle game outcomes such as collisions and successfully crossing the blocks.
