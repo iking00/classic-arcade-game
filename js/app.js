@@ -103,7 +103,11 @@ class Player extends Entity {
                 break;
             case 'up':
                 //if the player makes it to the top then reset and add win
-                this.row > 1 ? this.row -= 1 : this.won();
+                if(this.row > 1) {
+                    this.row -= 1;
+                } else {
+                    this.won();
+                }
                 break;
             case 'right':
                 if(this.col < 4) {this.col += 1;}
@@ -127,7 +131,7 @@ class Player extends Entity {
     //player collided with enemy; reset player position; increment collision count
     collision(){
         this.reset();
-        this.collisionCount += 1
+        this.collisionCount += 1;
         $('#collisionCount').html(this.collisionCount);
     }
 
